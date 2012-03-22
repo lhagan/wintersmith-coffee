@@ -8,19 +8,21 @@ module.exports = (wintersmith, callback) ->
 
   class StylusPlugin extends wintersmith.ContentPlugin
 
-    constructor: (@_filename, @_text) ->
+    constructor: (@_filename, @_base, @_text) ->
 
     getFilename: ->
       @_filename.replace /styl$/, 'css'
 
     render: (locals, contents, templates, callback) ->
       try
-        stylus.render @_text,
-          filename: getFilename,
-          (err, css) ->
-            if err 
-              throw err
-            console.log css
+        that = this
+        options = 
+          filename: this.getFilename()
+          path: @_base
+        stylus(@_text).set('filename', this.getFilename()).render callback
+          stream = fs.createWriteStream path.join(options['path'], options['filename'])
+          stream.once 'open', (fd) ->
+            stream.write css
       catch error
         callback error
       callback null, @_text
