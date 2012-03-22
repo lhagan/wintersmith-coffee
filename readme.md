@@ -1,9 +1,9 @@
 
-# wintersmith-less
+# wintersmith-stylus
 
-[less](http://lesscss.org) plugin for [wintersmith](https://github.com/jnordberg/wintersmith)
+[stylus](http://learnboost.github.com/stylus/docs/js.html) plugin for [wintersmith](https://github.com/jnordberg/wintersmith)
 
 install:
 
-`npm install wintersmith-less -g`
-then add `wintersmith-less` to your plugins in the wintersmith config
+`npm install wintersmith-stylus -g`
+then add `wintersmith-stylus` to your plugins in the wintersmith config
