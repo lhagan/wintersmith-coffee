@@ -15,17 +15,10 @@ module.exports = (wintersmith, callback) ->
 
     render: (locals, contents, templates, callback) ->
       try
-        that = this
-        options = 
-          filename: this.getFilename()
-          path: @_base
-        stylus(@_text).set('filename', this.getFilename()).render callback
-          stream = fs.createWriteStream path.join(options['path'], options['filename'])
-          stream.once 'open', (fd) ->
-            stream.write css
+        stylus(@_text).set('filename', this.getFilename()).render (err, css) ->
+          callback null, new Buffer css
       catch error
         callback error
-      callback null, @_text
 
   StylusPlugin.fromFile = (filename, base, callback) ->
     fs.readFile path.join(base, filename), (error, buffer) ->
