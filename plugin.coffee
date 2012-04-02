@@ -14,11 +14,11 @@ module.exports = (wintersmith, callback) ->
 
     render: (locals, contents, templates, callback) ->
       try
-        stylus(@_text).set('filename', this.getFilename()).render (err, css) ->
-          if err
-            callback err
-          else
-            callback null, new Buffer css
+        stylus(@_text)
+        .set('filename', this.getFilename())
+        .set('paths', [path.dirname(path.join(@_base, @_filename))])
+        .render (err, css) ->
+          callback null, new Buffer css
       catch error
         callback error
 
