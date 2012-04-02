@@ -18,7 +18,10 @@ module.exports = (wintersmith, callback) ->
         .set('filename', this.getFilename())
         .set('paths', [path.dirname(path.join(@_base, @_filename))])
         .render (err, css) ->
-          callback null, new Buffer css
+          if err
+            callback err
+          else
+            callback null, new Buffer css
       catch error
         callback error
 
