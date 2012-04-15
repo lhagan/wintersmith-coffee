@@ -14,7 +14,7 @@ module.exports = (wintersmith, callback) ->
 
     render: (locals, contents, templates, callback) ->
       try
-        js = CoffeeScript.compile()
+        js = CoffeeScript.compile(@_text)
         callback null, new Buffer js
       catch error
         callback error

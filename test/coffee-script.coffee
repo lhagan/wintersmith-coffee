@@ -17,7 +17,7 @@ describe "CoffeeScript integration", ->
     wintersmith.ContentTree.fromDirectory 'test/contents/js', __dirname, (err, tree)->
       # For main.styl, we want to make sure coffee is compiled
       tree['main.coffee'].render null, null, null, (err, content)->
-
+        
         if content?
           content.should.equal("""
             (function() {
@@ -37,5 +37,5 @@ describe "CoffeeScript integration", ->
 
       # For fail.coffee, it should return err
       tree['fail.coffee'].render null, null, null, (err, content)->
-        
-        done() if err?
+        if err?
+          done()
