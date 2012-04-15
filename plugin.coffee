@@ -10,7 +10,7 @@ module.exports = (wintersmith, callback) ->
     constructor: (@_filename, @_base, @_text) ->
 
     getFilename: ->
-      @_filename.replace /styl$/, 'css'
+      @_filename.replace /coffee$/, 'js'
 
     render: (locals, contents, templates, callback) ->
       try
