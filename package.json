@@ -1,12 +1,10 @@
 {
-  "name": "wintersmith-stylus",
+  "name": "wintersmith-coffee",
   "version": "0.1.0",
-  "author": "Jon Wong <j@jnwng.com>",
-  "description": "stylus plugin for wintersmith",
+  "author": "mnmly <i.am@mnmly.com>",
+  "description": "coffeescript plugin for wintersmith",
   "license": "MIT",
   "dependencies": {
-    "stylus": ">=0.19.x",
-    "nib": ">=0.4.0",
     "async": ">= 0.0.1",
     "coffee-script": ">=1.2.x"
   },

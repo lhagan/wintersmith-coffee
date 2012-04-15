@@ -1,19 +1,14 @@
-# wintersmith-stylus
+# wintersmith-coffee
 
-[stylus](http://learnboost.github.com/stylus/docs/js.html) plugin for [wintersmith](https://github.com/jnordberg/wintersmith).
-
-Now works with [nib](http://visionmedia.github.com/nib/).
+[CoffeeScript](http://coffeescript.org/) plugin for [wintersmith](https://github.com/jnordberg/wintersmith).
 
 ### install:
 
-`npm install wintersmith-stylus -g`
-then add `wintersmith-stylus` to your plugins in the wintersmith config
+`npm install wintersmith-coffee`
 
-or locally,
-
-    npm install wintersmith-stylus
+    npm install wintersmith-coffee
   
-then add `./node_modules/wintersmith-stylus/` to `config.json` like:
+then add `./node_modules/wintersmith-coffee/` to `config.json` like:
 
     {
       "locals": {
@@ -24,7 +19,7 @@ then add `./node_modules/wintersmith-stylus/` to `config.json` like:
         "index_articles": 3
       },
       "plugins": [
-        "./node_modules/wintersmith-stylus/"
+        "./node_modules/wintersmith-coffee/"
       ]
     }
     
@@ -33,4 +28,4 @@ then add `./node_modules/wintersmith-stylus/` to `config.json` like:
 
 Test is written using [Mocha](http://visionmedia.github.com/mocha/). Install it globally, then run
 
-    $ mocha
+    $ mocha --compilers coffee:coffee-script

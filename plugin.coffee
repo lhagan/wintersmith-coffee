@@ -1,12 +1,11 @@
-stylus = require 'stylus'
-nib    = require 'nib'
-path = require 'path'
-async = require 'async'
-fs = require 'fs'
+CoffeeScript = require('coffee-script')
+path         = require 'path'
+async        = require 'async'
+fs           = require 'fs'
 
 module.exports = (wintersmith, callback) ->
 
-  class StylusPlugin extends wintersmith.ContentPlugin
+  class CoffeePlugin extends wintersmith.ContentPlugin
 
     constructor: (@_filename, @_base, @_text) ->
 
@@ -15,24 +14,17 @@ module.exports = (wintersmith, callback) ->
 
     render: (locals, contents, templates, callback) ->
       try
-        stylus(@_text)
-        .set('filename', this.getFilename())
-        .set('paths', [path.dirname(path.join(@_base, @_filename))])
-        .use(nib())
-        .render (err, css) ->
-          if err
-            callback err
-          else
-            callback null, new Buffer css
+        js = CoffeeScript.compile()
+        callback null, new Buffer js
       catch error
         callback error
 
-  StylusPlugin.fromFile = (filename, base, callback) ->
+  CoffeePlugin.fromFile = (filename, base, callback) ->
     fs.readFile path.join(base, filename), (error, buffer) ->
       if error
         callback error
       else
-        callback null, new StylusPlugin filename, base, buffer.toString()
+        callback null, new CoffeePlugin filename, base, buffer.toString()
 
-  wintersmith.registerContentPlugin 'styles', '**/*.styl', StylusPlugin
+  wintersmith.registerContentPlugin 'coffee', '**/*.coffee', CoffeePlugin
   callback()
