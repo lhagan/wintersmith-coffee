@@ -1,6 +1,6 @@
 {
   "name": "wintersmith-coffee",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "mnmly <i.am@mnmly.com>",
   "description": "coffeescript plugin for wintersmith",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
 
   "devDependencies": {
-    "wintersmith": ">=1.0.0",
+    "wintersmith": ">=2.0.0",
     "mocha": ">=1.0.0"
   }
 }
