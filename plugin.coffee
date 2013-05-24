@@ -3,28 +3,29 @@ path         = require 'path'
 async        = require 'async'
 fs           = require 'fs'
 
-module.exports = (wintersmith, callback) ->
+module.exports = (env, callback) ->
 
-  class CoffeePlugin extends wintersmith.ContentPlugin
+  class CoffeePlugin extends env.ContentPlugin
 
-    constructor: (@_filename, @_base, @_text) ->
+    constructor: (@_filepath, @_text) ->
 
     getFilename: ->
-      @_filename.replace /coffee$/, 'js'
+      @_filepath.relative.replace /coffee$/, 'js'
+    
+    getView: ->
+      return (env, locals, contents, templates, callback) ->
+        try
+          js = CoffeeScript.compile(@_text)
+          callback null, new Buffer js
+        catch error
+          callback error
 
-    render: (locals, contents, templates, callback) ->
-      try
-        js = CoffeeScript.compile(@_text)
-        callback null, new Buffer js
-      catch error
-        callback error
-
-  CoffeePlugin.fromFile = (filename, base, callback) ->
-    fs.readFile path.join(base, filename), (error, buffer) ->
+  CoffeePlugin.fromFile = (filepath, callback) ->
+    fs.readFile filepath.full, (error, buffer) ->
       if error
         callback error
       else
-        callback null, new CoffeePlugin filename, base, buffer.toString()
+        callback null, new CoffeePlugin filepath, buffer.toString()
 
-  wintersmith.registerContentPlugin 'coffee', '**/*.coffee', CoffeePlugin
+  env.registerContentPlugin 'coffee', '**/*.coffee', CoffeePlugin
   callback()
