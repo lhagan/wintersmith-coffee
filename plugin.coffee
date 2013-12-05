@@ -16,7 +16,7 @@ module.exports = (env, callback) ->
       return (env, locals, contents, templates, callback) ->     
         try
           js = CoffeeScript.compile @_text, 
-            literate: CoffeeScript.helpers.isLiterate @_filepath
+            literate: CoffeeScript.helpers.isLiterate @_filepath.full
           callback null, new Buffer js
         catch error
           callback error
