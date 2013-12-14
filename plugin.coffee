@@ -10,7 +10,7 @@ module.exports = (env, callback) ->
     constructor: (@_filepath, @_text) ->
 
     getFilename: ->
-      @_filepath.relative.replace /(coffee|litcoffee|coffee.md)$/, 'js'
+      @_filepath.relative.replace /(coffee|litcoffee|coffee\.md)$/, 'js'
     
     getView: ->
       return (env, locals, contents, templates, callback) ->     
@@ -28,7 +28,5 @@ module.exports = (env, callback) ->
       else
         callback null, new CoffeePlugin filepath, buffer.toString()
 
-  env.registerContentPlugin 'coffee', '**/*.coffee', CoffeePlugin
-  env.registerContentPlugin 'coffee', '**/*.litcoffee', CoffeePlugin
-  env.registerContentPlugin 'coffee', '**/*.coffee.md', CoffeePlugin
+  env.registerContentPlugin 'coffee', '**/*.*(coffee|litcoffee|coffee.md)', CoffeePlugin
   callback()
