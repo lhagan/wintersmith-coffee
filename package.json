@@ -1,12 +1,12 @@
 {
   "name": "wintersmith-coffee",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "mnmly <i.am@mnmly.com>",
   "description": "coffeescript plugin for wintersmith",
   "license": "MIT",
   "dependencies": {
     "async": ">= 0.0.1",
-    "coffee-script": ">=1.2.x"
+    "coffee-script": ">=1.7.x"
   },
 
   "devDependencies": {
