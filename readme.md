@@ -4,8 +4,6 @@
 
 ### install:
 
-`npm install wintersmith-coffee`
-
     npm install wintersmith-coffee
   
 then add `./node_modules/wintersmith-coffee/` to `config.json` like:
