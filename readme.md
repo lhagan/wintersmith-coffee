@@ -24,6 +24,6 @@ then add `./node_modules/wintersmith-coffee/` to `config.json` like:
 
 ### Test
 
-Test is written using [Mocha](http://visionmedia.github.com/mocha/). Install it globally, then run
+Test is written using [Mocha](https://mochajs.org/). Install it globally, then run
 
     $ mocha --compilers coffee:coffee-script
