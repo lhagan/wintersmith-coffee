@@ -7,15 +7,13 @@ module.exports = (env, callback) ->
 
   class CoffeePlugin extends env.ContentPlugin
 
-    constructor: (@_filepath, @_text) ->
-
     getFilename: ->
       @_filepath.relative.replace /(coffee|litcoffee|coffee\.md)$/, 'js'
-    
+
     getView: ->
-      return (env, locals, contents, templates, callback) ->     
+      return (env, locals, contents, templates, callback) ->
         try
-          js = CoffeeScript.compile @_text, 
+          js = CoffeeScript.compile @_text,
             literate: CoffeeScript.helpers.isLiterate @_filepath.full
           callback null, new Buffer js
         catch error
