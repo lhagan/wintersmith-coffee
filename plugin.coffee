@@ -11,9 +11,9 @@ module.exports = (env, callback) ->
       @_filepath.relative.replace /(coffee|litcoffee|coffee\.md)$/, 'js'
 
     getView: ->
-      return (env, locals, contents, templates, callback) ->     
+      return (env, locals, contents, templates, callback) ->
         try
-          js = CoffeeScript.compile @_text, 
+          js = CoffeeScript.compile @_text,
             literate: CoffeeScript.helpers.isLiterate @_filepath.full
           callback null, new Buffer js
         catch error
